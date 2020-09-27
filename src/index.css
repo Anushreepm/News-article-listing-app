@@ -121,7 +121,7 @@ code {
   min-width: 100%;
   max-width: 100%;
   background-color: white;
-  padding: 0 50px;
+  /* padding: 0 50px; */
   overflow-y: scroll;
   position: relative;
 }
@@ -190,6 +190,7 @@ code {
   overflow-y: scroll;
   display: flex;
   flex-direction: row;
+  padding: 0 50px;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
