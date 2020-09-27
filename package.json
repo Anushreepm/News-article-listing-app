@@ -2,7 +2,8 @@
   "name": "newsarticleslisting-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Anushreepm.github.io/News-article-listing-app",
+  "node": "10.15.3",
+  "npm":"6.14.7",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -22,8 +23,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
