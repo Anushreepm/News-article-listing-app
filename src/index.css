@@ -186,6 +186,7 @@ code {
   max-width: 100%;
   width: 100%;
   background-color: white;
+  justify-content: center;
   overflow-y: scroll;
   display: flex;
   flex-direction: row;
@@ -309,7 +310,7 @@ code {
 
 /* Media Queries */
 
-@media (max-width: 768px) {
+@media (max-width: 570px) {
   .homepage-container {
     flex-direction: column;
   }
