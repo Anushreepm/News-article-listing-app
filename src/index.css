@@ -310,7 +310,7 @@ code {
 
 /* Media Queries */
 
-@media (max-width: 570px) {
+@media (max-width: 768px) {
   .homepage-container {
     flex-direction: column;
   }
@@ -328,6 +328,9 @@ code {
     min-height: 400px;
     max-height: 400px;
     flex-direction: column;
+  }
+  .news-card-container {
+    justify-content: center;
   }
 }
 
@@ -349,5 +352,8 @@ code {
   }
   .main-header {
     padding: 0;
+  }
+  .news-card-container {
+    justify-content: center;
   }
 }
