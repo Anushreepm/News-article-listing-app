@@ -1,6 +1,5 @@
 News Article Listing App using React.js
 
-##Running
 
 Run npm install inside the folder, this will install react.js and other dependencies and will take some time.
 
