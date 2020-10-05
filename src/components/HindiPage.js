@@ -9,11 +9,15 @@ function HindiPage() {
   const [favourites, setFavourites] = useState();
   const [hiddenNews, setHiddenNews] = useState();
   const [searchText, setSearchText] = useState("");
+  const [page,setPage] = useState(1);
+  const [slicedData, setSlicedData] = useState([]);
+
+
 
   const fetchTopic = async (topic) => {
     setTopic(topic);
     try {
-      const url = `https://gnews.io/api/v4/top-headlines?lang=hi&topic=${topic}&q=${searchText}&token=a4aa21e761ad9337da6605848ae28aa5`;
+      const url = `https://gnews.io/api/v4/top-headlines?lang=hi&topic=${topic}&q=${searchText}&token=1661e836b867ebec41a56e2922245173`;
       const res = await axios.get(url);
       const newData = res.data.articles.map((article) => {
         if (!hiddenNews[article.title]) {
@@ -56,6 +60,15 @@ function HindiPage() {
     }
   };
 
+  const setPages = (p) => {
+    setPage(p);
+  }
+
+  useEffect(() => {
+    const newData = Object.keys(state).length > 0 ?  state.articles.slice((page-1)*3,page*3) : []
+    setSlicedData(newData)
+  },[page,favourites, topic, hiddenNews, searchText,state])
+
   const deleteNews = (id) => {
     const hideNews = JSON.parse(localStorage.getItem("hiddenNews"));
     hideNews[id] = true;
@@ -88,6 +101,8 @@ function HindiPage() {
     deleteNews: deleteNews,
     topic: topic,
     searchValueFunction: searchValueFunction,
+    setPages: setPages,
+    slicedData: slicedData,
   };
   // console.log(favourites["hello"])
   console.log(state);

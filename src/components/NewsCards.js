@@ -1,14 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 
 function NewsCards(props) {
   const history = useHistory();
   const { commonProps } = props;
-  const { state, setFavourite, deleteNews } = commonProps;
+  const { state, setFavourite, deleteNews, slicedData } = commonProps;
+
+  console.log(slicedData)
 
   const cardJSX =
-    Object.keys(state).length !== 0 ? (
-      state.articles.map((article) => {
+    slicedData.length > 0 ? (
+      slicedData.map((article) => {
         if (article) {
           return (
             <div className="news-card-layout" key={article.title}>
@@ -81,7 +83,7 @@ function NewsCards(props) {
   return (
     <div className="news-card-container">
       {/* {Response && cardJSX} */}
-      {Object.keys(state).length !== 0 && cardJSX}
+      {slicedData.length > 0 && cardJSX}
       {/* {!Response && <h1>Unable to fetch records, please try again</h1>} */}
     </div>
   );

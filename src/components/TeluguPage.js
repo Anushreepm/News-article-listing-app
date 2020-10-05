@@ -9,15 +9,17 @@ function TeluguPage() {
   const [favourites, setFavourites] = useState();
   const [hiddenNews, setHiddenNews] = useState();
   const [searchText, setSearchText] = useState("");
+  const [page,setPage] = useState(1);
+  const [slicedData, setSlicedData] = useState([]);
 
   const fetchTopic = async (topic) => {
     setTopic(topic);
     try {
-      const url = `https://gnews.io/api/v4/top-headlines?lang=te&topic=${topic}&q=${searchText}&token=a4aa21e761ad9337da6605848ae28aa5`;
+      const url = `https://gnews.io/api/v4/top-headlines?lang=te&topic=${topic}&q=${searchText}&token=1661e836b867ebec41a56e2922245173`;
       const res = await axios.get(url);
       const newData = res.data.articles.map((article) => {
         if (!hiddenNews[article.title]) {
-          console.log("i was not hidden");
+          // console.log("i was not hidden");
           if (favourites[article.title]) {
             return {
               ...article,
@@ -43,7 +45,7 @@ function TeluguPage() {
 
   const setFavourite = (id, fav) => {
     if (fav) {
-      console.log("i am in fav");
+      // console.log("i am in fav");
       const favourites = JSON.parse(localStorage.getItem("favourites"));
       delete favourites[id];
       localStorage.setItem("favourites", JSON.stringify(favourites));
@@ -55,6 +57,15 @@ function TeluguPage() {
       setFavourites(JSON.parse(localStorage.getItem("favourites")) || {});
     }
   };
+
+  const setPages = (p) => {
+    setPage(p);
+  }
+
+  useEffect(() => {
+    const newData = Object.keys(state).length > 0 ?  state.articles.slice((page-1)*3,page*3) : []
+    setSlicedData(newData)
+  },[page,favourites, topic, hiddenNews, searchText,state])
 
   const deleteNews = (id) => {
     const hideNews = JSON.parse(localStorage.getItem("hiddenNews"));
@@ -88,9 +99,11 @@ function TeluguPage() {
     deleteNews: deleteNews,
     topic: topic,
     searchValueFunction: searchValueFunction,
+    setPages: setPages,
+    slicedData: slicedData
   };
-  // console.log(favourites["hello"])
-  console.log(state);
+  
+  // console.log(state);
   return (
     <div className="main-container">
       <Header commonProps={commonProps} />
