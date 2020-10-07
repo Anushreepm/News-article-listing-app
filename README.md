@@ -15,7 +15,7 @@ Functionality
 
 Features
 
-* Responsive for table and mobile
+* Responsive for tablet and mobile
 * Gnews API is used to fetch data
 * Local storage for storing liked and hidden news
 
